@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 55: expected statement.
+    renpy.persistent.string_salva = pp
+                                  ^
+
+Ren'Py Version: Ren'Py 8.0.3.22090809
+Sun Apr 28 03:47:53 2024
