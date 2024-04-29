@@ -187,7 +187,7 @@ define gui.confirm_button_text_xalign = 0.5
 define gui.page_button_borders = Borders(9, 4, 9, 4)
 
 define gui.quick_button_borders = Borders(9, 4, 9, 0)
-define gui.quick_button_text_size = 17
+define gui.quick_button_text_size = 23
 define gui.quick_button_text_idle_color = gui.idle_small_color
 define gui.quick_button_text_selected_color = gui.accent_color
 
@@ -235,7 +235,7 @@ define config.thumbnail_width = 216
 define config.thumbnail_height = 122
 
 ## The number of columns and rows in the grid of save slots.
-define gui.file_slot_cols = 2
+define gui.file_slot_cols = 1
 define gui.file_slot_rows = 2
 
 
@@ -255,7 +255,7 @@ define gui.skip_ypos = 9
 define gui.notify_ypos = 38
 
 ## The spacing between menu choices.
-define gui.choice_spacing = 19
+define gui.choice_spacing = 60
 
 ## Buttons in the navigation section of the main and game menus.
 define gui.navigation_spacing = 17
@@ -368,11 +368,11 @@ define gui.nvl_list_length = 6
 
 ## The height of an NVL-mode entry. Set this to None to have the entries
 ## dynamically adjust height.
-define gui.nvl_height = 144
+define gui.nvl_height = None
 
 ## The spacing between NVL-mode entries when gui.nvl_height is None, and between
 ## NVL-mode entries and an NVL-mode menu.
-define gui.nvl_spacing = 9
+define gui.nvl_spacing = 5
 
 ## The position, width, and alignment of the label giving the name of the
 ## speaking character.
@@ -382,10 +382,10 @@ define gui.nvl_name_width = 258
 define gui.nvl_name_xalign = 1.0
 
 ## The position, width, and alignment of the dialogue text.
-define gui.nvl_text_xpos = 292
-define gui.nvl_text_ypos = 5
+define gui.nvl_text_xpos = 0.5
+define gui.nvl_text_ypos = 0.1
 define gui.nvl_text_width = 773
-define gui.nvl_text_xalign = 0.0
+define gui.nvl_text_xalign = 0.5
 
 ## The position, width, and alignment of nvl_thought text (the text said by the
 ## nvl_narrator character.)
@@ -458,17 +458,17 @@ init python:
         gui.file_slot_rows = 2
 
         ## NVL-mode.
-        gui.nvl_height = 144
+        #gui.nvl_height = None
 
-        gui.nvl_name_width = 258
-        gui.nvl_name_xpos = 275
+        #gui.nvl_name_width = 258
+        #gui.nvl_name_xpos = 275
 
-        gui.nvl_text_width = 773
-        gui.nvl_text_xpos = 292
-        gui.nvl_text_ypos = 5
+        #gui.nvl_text_width = 773
+        #gui.nvl_text_xpos = 0.5
+        #gui.nvl_text_ypos = 0.1
 
-        gui.nvl_thought_width = 1047
-        gui.nvl_thought_xpos = 17
+        #gui.nvl_thought_width = 1047
+        #gui.nvl_thought_xpos = 17
 
-        gui.nvl_button_width = 1047
-        gui.nvl_button_xpos = 17
+        #gui.nvl_button_width = 1047
+        #gui.nvl_button_xpos = 17

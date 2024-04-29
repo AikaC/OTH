@@ -1,36 +1,78 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 119, in script
-    pp "Acho que é para seguir ele."
-KeyError: "'ASa'"
+  File "game/scripts/level_01.rpy", line 11, in script
+    call screen listening
+  File "renpy/common/000statements.rpy", line 609, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "game/scripts/base_telas.rpy", line 2, in execute
+    screen listening():
+  File "game/scripts/base_telas.rpy", line 2, in execute
+    screen listening():
+  File "game/scripts/base_telas.rpy", line 5, in execute
+    grid 3 5:
+  File "game/scripts/base_telas.rpy", line 8, in execute
+    for i in words:
+  File "game/scripts/base_telas.rpy", line 9, in execute
+    textbutton"{size=30}[i]" action ShowMenu(img_lst)
+  File "game/scripts/base_telas.rpy", line 9, in keywords
+    textbutton"{size=30}[i]" action ShowMenu(img_lst)
+  File "game/scripts/base_telas.rpy", line 9, in <module>
+    textbutton"{size=30}[i]" action ShowMenu(img_lst)
+NameError: name 'img_lst' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 119, in script
-    pp "Acho que é para seguir ele."
-  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\ast.py", line 921, in execute
-    renpy.exports.say(who, what, *args, **kwargs)
-  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\exports.py", line 1373, in say
-    who(what, *args, **kwargs)
-  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\character.py", line 1251, in __call__
-    who = self.prefix_suffix("who", self.who_prefix, who, self.who_suffix)
-  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\character.py", line 1172, in prefix_suffix
-    return (sub(prefix) + sub(body) + sub(suffix))
-  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\character.py", line 1152, in sub
-    return renpy.substitutions.substitute(s, scope=scope, force=force, translate=translate)[0]
-  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\substitutions.py", line 278, in substitute
-    s = formatter.vformat(s, (), kwargs) # type: ignore
-  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python3.9/string.py", line 165, in vformat
-  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python3.9/string.py", line 205, in _vformat
-  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\substitutions.py", line 168, in get_field
-    obj, arg_used = super(Formatter, self).get_field(field_name, args, kwargs)
-  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python3.9/string.py", line 270, in get_field
-  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python3.9/string.py", line 227, in get_value
-KeyError: "'ASa'"
+  File "game/scripts/level_01.rpy", line 11, in script
+    call screen listening
+  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\ast.py", line 2232, in execute
+    self.call("execute")
+  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\ast.py", line 2220, in call
+    return renpy.statements.call(method, parsed, *args, **kwargs)
+  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\statements.py", line 281, in call
+    return method(parsed, *args, **kwargs)
+  File "renpy/common/000statements.rpy", line 609, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\exports.py", line 3181, in call_screen
+    rv = renpy.ui.interact(mouse="screen", type="screen", roll_forward=roll_forward)
+  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\ui.py", line 299, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\display\core.py", line 3377, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\display\core.py", line 3810, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\display\core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\display\core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\display\core.py", line 582, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\display\screen.py", line 451, in visit_all
+    callback(self)
+  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\display\core.py", line 3810, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\display\screen.py", line 462, in per_interact
+    self.update()
+  File "C:\Users\brend\Documents\renpy-8.0.3-sdk\renpy\display\screen.py", line 653, in update
+    self.screen.function(**self.scope)
+  File "game/scripts/base_telas.rpy", line 2, in execute
+    screen listening():
+  File "game/scripts/base_telas.rpy", line 2, in execute
+    screen listening():
+  File "game/scripts/base_telas.rpy", line 5, in execute
+    grid 3 5:
+  File "game/scripts/base_telas.rpy", line 8, in execute
+    for i in words:
+  File "game/scripts/base_telas.rpy", line 9, in execute
+    textbutton"{size=30}[i]" action ShowMenu(img_lst)
+  File "game/scripts/base_telas.rpy", line 9, in keywords
+    textbutton"{size=30}[i]" action ShowMenu(img_lst)
+  File "game/scripts/base_telas.rpy", line 9, in <module>
+    textbutton"{size=30}[i]" action ShowMenu(img_lst)
+NameError: name 'img_lst' is not defined
 
 Windows-10-10.0.22621 AMD64
 Ren'Py 8.0.3.22090809
 OTH 0.1
-Sun Apr 28 04:18:48 2024
+Sun Apr 28 23:09:14 2024

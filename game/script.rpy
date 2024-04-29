@@ -1,6 +1,7 @@
 ﻿# O jogo começa aqui.
 
 label start:
+    jump listen_1
     if persistent.n2 == True:
         jump nivel
         return
@@ -26,7 +27,7 @@ label intro:
     hide PP
     with dissolve
     show Teru T_exc at floating
-    pause 1.0
+    pause 2.0
 
     #sfx giberish
     show Teru T_talk at floating
@@ -117,8 +118,8 @@ label friends:
             with dissolve
 
             persistent.pp "Acho que é para seguir ele."
-            hide Teru
-            call screen pagina01
+            hide PP
+            jump explain
             return
         "Ajuda!" if o2:
             show Teru at floating
@@ -127,3 +128,30 @@ label friends:
             $ o2 = False
             jump friends
             return
+
+label explain:
+    nvl clear
+    
+    nar "Prepare-se para embarcar em uma aventura espacial incrível."
+    nar "Com a ajuda de Teru, você vai embarcar em uma jornada para consertar sua nave..."
+    nar "... mas para isso, você precisa aprender o idioma dos habitantes do planeta."
+    nar "{color=#00cc99}Resolva os desafios para desbloquear as histórias."
+    nar "Aproveite para expandir seu vocabulário, praticar conversação e aprender gramática de uma forma envolvente e interativa."
+    nar "Vamos lá, o universo está esperando por nós!"
+    call screen pagina01
+
+label denovo:
+    nvl clear
+    nar "Começar outro jogo?{p}Essa ação irá apagar todo seu progresso e não pode ser desfeita"
+
+    menu:
+        "Sim":
+            $ persistent.n2 = False
+            $ persistent.n3 = False
+            $ persistent.n4 = False
+            $ persistent.n5 = False
+            $ persistent.n6 = False
+            $ persistent.n7 = False
+            jump start
+        "Não":
+            jump start

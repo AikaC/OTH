@@ -1,14 +1,29 @@
-﻿label nivel:
+﻿#tela de menu das fases
+label nivel:
     call screen pagina01
     return
 # Primeira fase
 
-label lvl1:
-    #permite bloquear botões de escolha do menu pre-programado
-    #define config.menu_include_disabled = True
+label listen_1:
+    $ title_level = "Time of the day"
+    $ words = ["Time", "Day", "Night", "Dawn", "Sunrise", "Early morning", "Morning",
+    "Midday", "Noon", "Afternoon", "Sundown", "Evening", "Late night", "Midnight","Twilight"]
+    call screen listening
+    return
 
-    "level 1"
+label explore_1:
+    "Exploring"
+    call screen pagina01
+    return
+
+label story_1:
+    "Storytime"
     $ persistent.n2 = True
+    $ persistent.n3 = True
+    $ persistent.n4 = True
+    $ persistent.n5 = True
+    $ persistent.n6 = True
+    $ persistent.n7 = True
     call screen pagina01
     return
 

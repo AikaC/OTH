@@ -209,6 +209,7 @@ screen choice(items):
     style_prefix "choice"
 
     vbox:
+        yalign 0.3
         for i in items:
             textbutton i.caption action i.action
 
@@ -231,57 +232,90 @@ style choice_button_text is default:
     properties gui.button_text_properties("choice_button")
 
 ## Levels screen ################################################################
+##Persistent data
 ##
 ## This screen is used to display the in-game level menus
 screen pagina01():
     tag menu
-
-    zorder 200
-
     add "BG/BG_Levels.png"
+    use game_menu(_(""), scroll="viewport"):
+
+        vbox:
+            text "{size=80}1.Greetings!"
+            xalign 0.5 yalign 0.1
+
+        vbox:
         
-    vbox:
-        text "{size=100}1.Greetings!"
-        xalign 0.5 yalign 0.1
+            xalign 0.5
+            yalign 0.6
+            spacing 30
+            text "Time of the day"
 
-    vbox:
-        style_prefix "lvl_ch"
+            frame:
+                xalign 0.5 yalign 0.5
+                hbox:
+                    spacing 30
+                    imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_1")
+                    imagebutton auto "gui/button/explore_%s_background.png" action Jump("explore_1")
+                    imagebutton auto "gui/button/story_%s_background.png" action Jump("story_1")
         
-        xalign 0.5
-        yalign 0.6
-        spacing 80
+            if persistent.n2 == True:
+                text "Bye-bye"
+                frame:
+                    xalign 0.5 yalign 0.5
+                    hbox:
+                        spacing 30
+                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_1")
+                        imagebutton auto "gui/button/explore_%s_background.png" action Jump("explore_1")
+                        imagebutton auto "gui/button/story_%s_background.png" action Jump("story_1")
 
-        textbutton "01":
-            action Jump("lvl1")
-            tooltip "Time of the day"
-        if persistent.n2 == True:
-            textbutton "02":
-                action Jump("lvl2")
-                tooltip "Bye-bye"
-        if persistent.n3 == True:
-            textbutton "03":
-                action Jump("lvl3")
-                tooltip "Points in time"
-        if persistent.n4 == True:
-            textbutton "04":
-                action Jump("lvl4")
-                tooltip "Be polite pt.1"
-        if persistent.n5 == True:
-            textbutton "05":
-                action Jump("lvl5")
-                tooltip "Be polite pt.2"
-        if persistent.n6 == True:
-            textbutton "06":
-                action Jump("lvl6")
-                tooltip "Quantity"
-        if persistent.n7 == True:
-            textbutton "07":
-                action Jump("lvl7")
-                tooltip "Greetings!"
-
-    hbox:
-        xalign 0.5 yalign 0.05
-        textbutton _("Menu") action ShowMenu('main_menu')
+            if persistent.n3 == True:
+                text "Points in time"
+                frame:
+                    xalign 0.5 yalign 0.5
+                    hbox:
+                        spacing 30
+                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_1")
+                        imagebutton auto "gui/button/explore_%s_background.png" action Jump("explore_1")
+                        imagebutton auto "gui/button/story_%s_background.png" action Jump("story_1")
+            if persistent.n4 == True:
+                text "Be polite pt.1"
+                frame:
+                    xalign 0.5 yalign 0.5
+                    hbox:
+                        spacing 30
+                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_1")
+                        imagebutton auto "gui/button/explore_%s_background.png" action Jump("explore_1")
+                        imagebutton auto "gui/button/story_%s_background.png" action Jump("story_1")
+            if persistent.n5 == True:
+                text "Be polite pt.2"
+                frame:
+                    xalign 0.5 yalign 0.5
+                    hbox:
+                        spacing 30
+                        style_prefix "quick"
+                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_1")
+                        imagebutton auto "gui/button/explore_%s_background.png" action Jump("explore_1")
+                        imagebutton auto "gui/button/story_%s_background.png" action Jump("story_1")
+            if persistent.n6 == True:
+                text "Quantity"
+                frame:
+                    xalign 0.5 yalign 0.5
+                    hbox:
+                        spacing 30
+                        style_prefix "quick"
+                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_1")
+                        imagebutton auto "gui/button/explore_%s_background.png" action Jump("explore_1")
+                        imagebutton auto "gui/button/story_%s_background.png" action Jump("story_1")
+            if persistent.n7 == True:
+                text "Greetings!"
+                frame:
+                    xalign 0.5 yalign 0.5
+                    hbox:
+                        spacing 30
+                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_1")
+                        imagebutton auto "gui/button/explore_%s_background.png" action Jump("explore_1")
+                        imagebutton auto "gui/button/story_%s_background.png" action Jump("story_1")
 
 style lvl_ch:
     size 25
@@ -351,20 +385,22 @@ screen navigation():
         spacing gui.navigation_spacing
 
         if main_menu:
-
-            textbutton _("Inicio") action Start()
+            if persistent.n2 == False:
+                textbutton _("Jogar") action Start()
+            elif persistent.n2 == True:
+                textbutton _("Recomeçar") action ShowMenu("denovo")
 
         else:
 
             #textbutton _("Historico") action ShowMenu("history")
-
+            textbutton _("Voltar") action Return()
             textbutton _("Salvar") action ShowMenu("save")
 
         #textbutton _("Carregar") action ShowMenu("load")
         if persistent.n2 == True:
             textbutton _("Níveis") action ShowMenu ("nivel")
 
-        textbutton _("Preferências") action ShowMenu("preferences")
+        textbutton _("Opções") action ShowMenu("preferences")
 
         if _in_replay:
 
@@ -372,7 +408,7 @@ screen navigation():
 
         elif not main_menu:
 
-            textbutton _("Menu Principal") action MainMenu()
+            textbutton _("Início") action MainMenu()
 
         textbutton _("Sobre") action ShowMenu("about")
 
@@ -381,11 +417,11 @@ screen navigation():
             ## Help isn't necessary or relevant to mobile devices.
             #textbutton _("Ajuda") action ShowMenu("help")
 
-        if renpy.variant("pc"):
+        #if renpy.variant("pc"):
 
             ## The quit button is banned on iOS and unnecessary on Android and
             ## Web.
-            textbutton _("Sair") action Quit(confirm=not main_menu)
+            #textbutton _("Sair") action Quit(confirm=not main_menu)
 
 
 style navigation_button is gui_button
@@ -526,10 +562,10 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
     use navigation
 
-    textbutton _("Voltar"):
-        style "return_button"
+    #textbutton _("Voltar"):
+        #style "return_button"
 
-        action Return()
+        #action Return()
 
     label title
 
@@ -694,7 +730,7 @@ screen file_slots(title):
 
                         add FileScreenshot(slot) xalign 0.5
 
-                        text FileTime(slot, format=_("{#file_time}%A, %B %d %Y, %H:%M"), empty=_("empty slot")):
+                        text FileTime(slot, format=_("{#file_time}%A, %B %d %Y, %H:%M"), empty=_("Vazio")):
                             style "slot_time_text"
 
                         text FileSaveName(slot):
@@ -720,7 +756,7 @@ screen file_slots(title):
                     textbutton _("{#quick_page}Q") action FilePage("quick")
 
                 ## range(1, 10) gives the numbers from 1 to 9.
-                for page in range(1, 10):
+                for page in range(1, 3):
                     textbutton "[page]" action FilePage(page)
 
                 textbutton _(">") action FilePageNext()
@@ -769,20 +805,20 @@ screen preferences():
 
     tag menu
 
-    use game_menu(_("Preferences"), scroll="viewport"):
+    use game_menu(_("Opções"), scroll="viewport"):
 
         vbox:
 
             hbox:
                 box_wrap True
 
-                if renpy.variant("pc") or renpy.variant("web"):
+                #if renpy.variant("pc") or renpy.variant("web"):
 
-                    vbox:
-                        style_prefix "radio"
-                        label _("Tela")
-                        textbutton _("Janela") action Preference("display", "window")
-                        textbutton _("Tela cheia") action Preference("display", "fullscreen")
+                    #vbox:
+                        #style_prefix "radio"
+                        #label _("Tela")
+                        #textbutton _("Janela") action Preference("display", "window")
+                        #textbutton _("Tela cheia") action Preference("display", "fullscreen")
 
                 vbox:
                     style_prefix "check"
@@ -806,7 +842,7 @@ screen preferences():
 
                     bar value Preference("text speed")
 
-                    label _("Tempo de aceleração")
+                    label _("Pular texto")
 
                     bar value Preference("auto-forward time")
 
@@ -820,7 +856,7 @@ screen preferences():
 
                     if config.has_sound:
 
-                        label _("Volume efeitos")
+                        label _("Efeitos sonoros")
 
                         hbox:
                             bar value Preference("sound volume")
@@ -1462,48 +1498,48 @@ style pref_vbox:
 
 ## Since a mouse may not be present, we replace the quick menu with a version
 ## that uses fewer and bigger buttons that are easier to touch.
-screen quick_menu():
-    variant "touch"
+#screen quick_menu():
+    #variant "touch"
 
-    zorder 100
+    #zorder 100
 
-    if quick_menu:
+    #if quick_menu:
 
-        hbox:
-            style_prefix "quick"
+        #hbox:
+            #style_prefix "quick"
 
-            xalign 0.5
-            yalign 1.0
+            #xalign 0.5
+            #yalign 1.0
 
-            textbutton _("Voltar") action Rollback()
-            textbutton _("Pular") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Menu") action ShowMenu()
+            #textbutton _("Voltar") action Rollback()
+            #textbutton _("Pular") action Skip() alternate Skip(fast=True, confirm=True)
+            #textbutton _("Auto") action Preference("auto-forward", "toggle")
+            #textbutton _("Menu") action ShowMenu()
 
 
 style window:
     variant "small"
-    background "gui/phone/textbox.png"
+    background "gui/textbox.png"
 
 style radio_button:
     variant "small"
-    foreground "gui/phone/button/radio_[prefix_]foreground.png"
+    foreground "gui/button/radio_[prefix_]foreground.png"
 
 style check_button:
     variant "small"
-    foreground "gui/phone/button/check_[prefix_]foreground.png"
+    foreground "gui/button/check_[prefix_]foreground.png"
 
 style nvl_window:
     variant "small"
-    background "gui/phone/nvl.png"
+    background "gui/nvl.png"
 
 style main_menu_frame:
     variant "small"
-    background "gui/phone/overlay/main_menu.png"
+    background "gui/overlay/main_menu.png"
 
 style game_menu_outer_frame:
     variant "small"
-    background "gui/phone/overlay/game_menu.png"
+    background "gui/overlay/game_menu.png"
 
 style game_menu_navigation_frame:
     variant "small"
@@ -1520,38 +1556,38 @@ style pref_vbox:
 style bar:
     variant "small"
     ysize gui.bar_size
-    left_bar Frame("gui/phone/bar/left.png", gui.bar_borders, tile=gui.bar_tile)
-    right_bar Frame("gui/phone/bar/right.png", gui.bar_borders, tile=gui.bar_tile)
+    left_bar Frame("gui/bar/left.png", gui.bar_borders, tile=gui.bar_tile)
+    right_bar Frame("gui/bar/right.png", gui.bar_borders, tile=gui.bar_tile)
 
 style vbar:
     variant "small"
     xsize gui.bar_size
-    top_bar Frame("gui/phone/bar/top.png", gui.vbar_borders, tile=gui.bar_tile)
-    bottom_bar Frame("gui/phone/bar/bottom.png", gui.vbar_borders, tile=gui.bar_tile)
+    top_bar Frame("gui/bar/top.png", gui.vbar_borders, tile=gui.bar_tile)
+    bottom_bar Frame("gui/bar/bottom.png", gui.vbar_borders, tile=gui.bar_tile)
 
 style scrollbar:
     variant "small"
     ysize gui.scrollbar_size
-    base_bar Frame("gui/phone/scrollbar/horizontal_[prefix_]bar.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
-    thumb Frame("gui/phone/scrollbar/horizontal_[prefix_]thumb.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
+    base_bar Frame("gui/scrollbar/horizontal_[prefix_]bar.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
+    thumb Frame("gui/scrollbar/horizontal_[prefix_]thumb.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
 
 style vscrollbar:
     variant "small"
     xsize gui.scrollbar_size
-    base_bar Frame("gui/phone/scrollbar/vertical_[prefix_]bar.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
-    thumb Frame("gui/phone/scrollbar/vertical_[prefix_]thumb.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
+    base_bar Frame("gui/scrollbar/vertical_[prefix_]bar.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
+    thumb Frame("gui/scrollbar/vertical_[prefix_]thumb.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
 
 style slider:
     variant "small"
     ysize gui.slider_size
-    base_bar Frame("gui/phone/slider/horizontal_[prefix_]bar.png", gui.slider_borders, tile=gui.slider_tile)
-    thumb "gui/phone/slider/horizontal_[prefix_]thumb.png"
+    base_bar Frame("gui/slider/horizontal_[prefix_]bar.png", gui.slider_borders, tile=gui.slider_tile)
+    thumb "gui/slider/horizontal_[prefix_]thumb.png"
 
 style vslider:
     variant "small"
     xsize gui.slider_size
-    base_bar Frame("gui/phone/slider/vertical_[prefix_]bar.png", gui.vslider_borders, tile=gui.slider_tile)
-    thumb "gui/phone/slider/vertical_[prefix_]thumb.png"
+    base_bar Frame("gui/slider/vertical_[prefix_]bar.png", gui.vslider_borders, tile=gui.slider_tile)
+    thumb "gui/slider/vertical_[prefix_]thumb.png"
 
 style slider_vbox:
     variant "small"

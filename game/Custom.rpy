@@ -9,8 +9,9 @@ default persistent.n7 = False
 # Declare os personagens usados nesse jogo. O argumento image, liga a imagem
 # ao nome do personagem.
 
-define t = Character("Teru", image = 'Teru')
+define nar = Character(None, kind=nvl)
 define pp = Character([persistent.pp], image = 'PP')
+define t = Character("Teru", image = 'Teru')
 
 # Declare as imagens aqui
 ##BG
