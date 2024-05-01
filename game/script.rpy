@@ -1,7 +1,7 @@
 ﻿# O jogo começa aqui.
 
 label start:
-    jump listen_1
+    jump listen_2
     if persistent.n2 == True:
         jump nivel
         return
@@ -152,6 +152,7 @@ label denovo:
             $ persistent.n5 = False
             $ persistent.n6 = False
             $ persistent.n7 = False
+            $ persistent.n8 = False
             jump start
         "Não":
             jump start

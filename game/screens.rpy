@@ -249,7 +249,7 @@ screen pagina01():
             xalign 0.5
             yalign 0.6
             spacing 30
-            text "Time of the day"
+            text "Time of the day pt. 1"
 
             frame:
                 xalign 0.5 yalign 0.5
@@ -258,64 +258,72 @@ screen pagina01():
                     imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_1")
                     imagebutton auto "gui/button/explore_%s_background.png" action Jump("explore_1")
                     imagebutton auto "gui/button/story_%s_background.png" action Jump("story_1")
-        
+
             if persistent.n2 == True:
+                text "Time of the day pt. 2"
+                frame:
+                    xalign 0.5 yalign 0.5
+                    hbox:
+                        spacing 30
+                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_2")
+                        imagebutton auto "gui/button/explore_%s_background.png" action Jump("explore_1")
+                        imagebutton auto "gui/button/story_%s_background.png" action Jump("story_1")
+        
+            if persistent.n3 == True:
                 text "Bye-bye"
                 frame:
                     xalign 0.5 yalign 0.5
                     hbox:
                         spacing 30
-                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_1")
+                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_3")
                         imagebutton auto "gui/button/explore_%s_background.png" action Jump("explore_1")
                         imagebutton auto "gui/button/story_%s_background.png" action Jump("story_1")
 
-            if persistent.n3 == True:
+            if persistent.n4 == True:
                 text "Points in time"
                 frame:
                     xalign 0.5 yalign 0.5
                     hbox:
                         spacing 30
-                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_1")
+                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_4")
                         imagebutton auto "gui/button/explore_%s_background.png" action Jump("explore_1")
                         imagebutton auto "gui/button/story_%s_background.png" action Jump("story_1")
-            if persistent.n4 == True:
+            if persistent.n5 == True:
                 text "Be polite pt.1"
                 frame:
                     xalign 0.5 yalign 0.5
                     hbox:
                         spacing 30
-                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_1")
+                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_5")
                         imagebutton auto "gui/button/explore_%s_background.png" action Jump("explore_1")
                         imagebutton auto "gui/button/story_%s_background.png" action Jump("story_1")
-            if persistent.n5 == True:
+            if persistent.n6 == True:
                 text "Be polite pt.2"
                 frame:
                     xalign 0.5 yalign 0.5
                     hbox:
                         spacing 30
                         style_prefix "quick"
-                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_1")
+                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_6")
                         imagebutton auto "gui/button/explore_%s_background.png" action Jump("explore_1")
                         imagebutton auto "gui/button/story_%s_background.png" action Jump("story_1")
-            if persistent.n6 == True:
+            if persistent.n7 == True:
                 text "Quantity"
                 frame:
                     xalign 0.5 yalign 0.5
                     hbox:
                         spacing 30
                         style_prefix "quick"
-                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_1")
+                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_7")
                         imagebutton auto "gui/button/explore_%s_background.png" action Jump("explore_1")
                         imagebutton auto "gui/button/story_%s_background.png" action Jump("story_1")
-            if persistent.n7 == True:
+            if persistent.n8 == True:
                 text "Greetings!"
                 frame:
                     xalign 0.5 yalign 0.5
                     hbox:
                         spacing 30
-                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("listen_1")
-                        imagebutton auto "gui/button/explore_%s_background.png" action Jump("explore_1")
-                        imagebutton auto "gui/button/story_%s_background.png" action Jump("story_1")
+                        imagebutton auto "gui/button/listen_%s_background.png" action Jump("intro2")
 
 style lvl_ch:
     size 25
